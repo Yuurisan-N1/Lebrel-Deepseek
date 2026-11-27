@@ -1,0 +1,37 @@
+Lebrel Bot HOWTO
+
+Short version, seven steps.
+
+1. INSTALL RUST
+   Windows / Linux / macOS: https://rustup.rs  then reopen the terminal and check:
+       rustc --version
+
+2. POINT AT A PROXY
+   Open proxy.txt in this folder. One proxy per line. The bot uses one line per
+   account, so keep the lines in the same order as the accounts you want to run.
+   An empty file, or no file at all, means a direct connection with no proxy.
+
+3. BUILD
+       cargo build --release
+   Windows users can run run_pc.bat instead, or use make on any platform.
+
+4. CREATE ACCOUNTS
+       ./target/release/lebrel-bot create 3
+   Each run makes a fresh Solana keypair, solves the human check through the
+   solver, signs the challenge and stores the account in session.json.
+
+5. CHECK THE ROUTES
+       ./target/release/lebrel-bot probe
+
+6. RUN THE BOT
+       ./target/release/lebrel-bot run
+
+7. MAKE SHORTCUTS
+   make build     compile the debug binary
+   make release   compile the release binary
+   make start     build then run one cycle
+   make fmt       format the source
+   make clean     remove build artifacts
+
+Config lives in config.json. The only key is settings.sleep_seconds, which is the
+pause between cycles in seconds. The default is 3600.
