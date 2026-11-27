@@ -1,19 +1,19 @@
 <div align="center">
 
-<img width="100%" alt="header" src="https://capsule-render.vercel.app/api?type=waving&height=210&text=Librel%20DeepSeek%20Bot&fontAlign=50&fontAlignY=36&fontSize=56&desc=Wallet%20Sign-In%20%7C%20API%20Key%20Creation%20%7C%20Batch%20Enroll&descAlign=50&descAlignY=58"/>
+<img width="100%" alt="header" src="https://capsule-render.vercel.app/api?type=waving&height=210&text=Lebrel%20DeepSeek%20Bot&fontAlign=50&fontAlignY=36&fontSize=56&desc=Wallet%20Sign-In%20%7C%20API%20Key%20Creation%20%7C%20Batch%20Enroll&descAlign=50&descAlignY=58"/>
 
 <img alt="typing" src="https://readme-typing-svg.demolab.com?font=Inter&size=18&duration=3000&pause=650&center=true&vCenter=true&width=900&lines=Solana+Wallet+Sign-In+%7C+No+Account+Needed;Wallet+Signature+Challenge+%7C+Session+Cookie;API+Key+Creation+%7C+apikey.txt;Batch+Enroll+%7C+Probe+%7C+Proxy+Support"/>
 
 <p>
   <img alt="rust" src="https://img.shields.io/badge/Rust-2021-f74c00?logo=rust&logoColor=white"/>
   <img alt="platform" src="https://img.shields.io/badge/Platform-Lebrel%20AI-111111"/>
-  <img alt="build" src="https://github.com/Yuurisan-N1/Librel-Deepseek/actions/workflows/build.yml/badge.svg"/>
+  <img alt="build" src="https://github.com/Yuurisan-N1/Lebrel-Deepseek/actions/workflows/build.yml/badge.svg"/>
   <img alt="proxy" src="https://img.shields.io/badge/Proxy-Supported-111111"/>
   <img alt="author" src="https://img.shields.io/badge/by-Yuurisandesu-111111"/>
 </p>
 
 <p>
-  <b>Librel DeepSeek Bot</b> is an account automation client for Lebrel AI.<br/>
+  <b>Lebrel DeepSeek Bot</b> is an account automation client for Lebrel AI.<br/>
   It generates a fresh Solana keypair for every account, signs the challenge message the server issues, obtains a session cookie, and creates an API key that is appended to <code>apikey.txt</code>. No existing account or seed phrase is needed. Use create mode to register any number of accounts in one run, and probe mode to verify the host and every proxy before enrolling.<br/>
   Built and distributed by <b>Yuurisandesu</b>.
 </p>
@@ -49,19 +49,19 @@ No compiler or runtime is needed. The bot ships as a prebuilt binary.
 **Clone the repository:**
 
 ```bash
-git clone https://github.com/Yuurisan-N1/Librel-Deepseek.git
-cd Librel-Deepseek
+git clone https://github.com/Yuurisan-N1/Lebrel-Deepseek.git
+cd Lebrel-Deepseek
 ```
 
 **Download the binary for your platform from the latest release:**
 
-https://github.com/Yuurisan-N1/Librel-Deepseek/releases/latest
+https://github.com/Yuurisan-N1/Lebrel-Deepseek/releases/latest
 
 | File | Platform | Link |
 |---|---|---|
-| `lebrel-bot-linux-x86_64` | Linux x86_64 | [Download](https://github.com/Yuurisan-N1/Librel-Deepseek/releases/latest/download/lebrel-bot-linux-x86_64) |
-| `lebrel-bot-macos-aarch64` | macOS Apple Silicon | [Download](https://github.com/Yuurisan-N1/Librel-Deepseek/releases/latest/download/lebrel-bot-macos-aarch64) |
-| `lebrel-bot-windows-x86_64.exe` | Windows x86_64 | [Download](https://github.com/Yuurisan-N1/Librel-Deepseek/releases/latest/download/lebrel-bot-windows-x86_64.exe) |
+| `lebrel-bot-linux-x86_64` | Linux x86_64 | [Download](https://github.com/Yuurisan-N1/Lebrel-Deepseek/releases/latest/download/lebrel-bot-linux-x86_64) |
+| `lebrel-bot-macos-aarch64` | macOS Apple Silicon | [Download](https://github.com/Yuurisan-N1/Lebrel-Deepseek/releases/latest/download/lebrel-bot-macos-aarch64) |
+| `lebrel-bot-windows-x86_64.exe` | Windows x86_64 | [Download](https://github.com/Yuurisan-N1/Lebrel-Deepseek/releases/latest/download/lebrel-bot-windows-x86_64.exe) |
 
 Place the downloaded binary in the same folder as `proxy.txt` and `config.json`.
 
@@ -179,7 +179,7 @@ Proxies are loaded from `proxy.txt` and assigned to accounts by position in roun
 ## File Structure
 
 ```text
-Librel-Deepseek/
+Lebrel-Deepseek/
 ├── .github/
 │   └── workflows/
 │       └── build.yml                    # CI: 3-platform matrix build and test
