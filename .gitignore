@@ -1,0 +1,13 @@
+target/
+Cargo.lock.orig
+*.log
+data.txt
+proxy.txt
+session.json
+phrase.txt
+.DS_Store
+Thumbs.db
+src/cli/create.rs
+src/step/signin.rs
+src/step/wallet.rs
+src/support/consts/net.rs
