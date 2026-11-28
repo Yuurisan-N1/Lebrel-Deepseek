@@ -13,59 +13,59 @@
 </p>
 
 <p>
-  <b>Lebrel DeepSeek Bot</b> is an account automation client for Lebrel AI.<br/>
-  It generates a fresh Solana keypair for every account, signs the challenge message the server issues, obtains a session cookie, and creates an API key that is appended to <code>apikey.txt</code>. No existing account or seed phrase is needed. Use create mode to register any number of accounts in one run, and probe mode to verify the host and every proxy before enrolling.<br/>
-  Built and distributed by <b>Yuurisandesu</b>.
+  <b>Lebrel DeepSeek Bot</b> は、Lebrel AI 向けのアカウント自動化クライアントやで。<br/>
+  アカウントごとに新しい Solana キーペアを生成して、サーバーが発行するチャレンジメッセージに署名して、セッションクッキーをもらって、API キーを作って <code>apikey.txt</code> に追記するんや。既存のアカウントもシードフレーズも要らへん。create モードで何個でもアカウントを一発で登録できるし、probe モードで登録前にホストとプロキシを全部確認できるで。<br/>
+  作ったんは <b>Yuurisandesu</b> やで。
 </p>
 
 </div>
 
 ---
 
-## Table of Contents
+## 目次
 
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the Bot](#running-the-bot)
-- [Run Modes](#run-modes)
-- [Features](#features)
-- [File Structure](#file-structure)
-- [Disclaimer](#disclaimer)
+- [必要なもの](#requirements)
+- [インストール](#installation)
+- [設定](#configuration)
+- [ボットの起動](#running-the-bot)
+- [実行モード](#run-modes)
+- [機能](#features)
+- [ファイル構成](#file-structure)
+- [免責事項](#disclaimer)
 
 ---
 
-## Requirements
+## 必要なもの
 
 - Git
-- A supported platform: Linux x86_64, Windows x86_64, or macOS Apple Silicon
+- 対応プラットフォーム：Linux x86_64、Windows x86_64、macOS Apple Silicon
 
-No compiler or runtime is needed. The bot ships as a prebuilt binary.
+コンパイラもランタイムも要らへん。ボットはビルド済みのバイナリで配布してるで。
 
 ---
 
-## Installation
+## インストール
 
-**Clone the repository:**
+**リポジトリをクローンする：**
 
 ```bash
 git clone https://github.com/Yuurisan-N1/Lebrel-Deepseek.git
 cd Lebrel-Deepseek
 ```
 
-**Download the binary for your platform from the latest release:**
+**最新リリースからプラットフォームに合ったバイナリをダウンロードしてな：**
 
 https://github.com/Yuurisan-N1/Lebrel-Deepseek/releases/latest
 
-| File | Platform | Link |
+| ファイル | プラットフォーム | リンク |
 |---|---|---|
-| `lebrel-bot-linux-x86_64` | Linux x86_64 | [Download](https://github.com/Yuurisan-N1/Lebrel-Deepseek/releases/latest/download/lebrel-bot-linux-x86_64) |
-| `lebrel-bot-macos-aarch64` | macOS Apple Silicon | [Download](https://github.com/Yuurisan-N1/Lebrel-Deepseek/releases/latest/download/lebrel-bot-macos-aarch64) |
-| `lebrel-bot-windows-x86_64.exe` | Windows x86_64 | [Download](https://github.com/Yuurisan-N1/Lebrel-Deepseek/releases/latest/download/lebrel-bot-windows-x86_64.exe) |
+| `lebrel-bot-linux-x86_64` | Linux x86_64 | [ダウンロード](https://github.com/Yuurisan-N1/Lebrel-Deepseek/releases/latest/download/lebrel-bot-linux-x86_64) |
+| `lebrel-bot-macos-aarch64` | macOS Apple Silicon | [ダウンロード](https://github.com/Yuurisan-N1/Lebrel-Deepseek/releases/latest/download/lebrel-bot-macos-aarch64) |
+| `lebrel-bot-windows-x86_64.exe` | Windows x86_64 | [ダウンロード](https://github.com/Yuurisan-N1/Lebrel-Deepseek/releases/latest/download/lebrel-bot-windows-x86_64.exe) |
 
-Place the downloaded binary in the same folder as `proxy.txt` and `config.json`.
+ダウンロードしたバイナリは `proxy.txt` と `config.json` と同じフォルダに置いてな。
 
-**Linux / macOS — mark executable:**
+**Linux / macOS — 実行権限をつける：**
 
 ```bash
 chmod +x lebrel-bot-linux-x86_64
@@ -73,61 +73,61 @@ chmod +x lebrel-bot-linux-x86_64
 
 ---
 
-## Configuration
+## 設定
 
-### 1. Proxy (proxy.txt)
+### 1. プロキシ（proxy.txt）
 
-Fill `proxy.txt` with proxies, one per line (optional, leave empty to connect directly):
+`proxy.txt` にプロキシを1行ずつ書いてな（任意、空のままでも直接つながるで）：
 
 ```
 http://user:pass@host:port
 socks5://user:pass@host:port
 ```
 
-Proxies are assigned to accounts by index in round-robin order. Credentials are masked before logging.
+プロキシはアカウントのインデックス順でラウンドロビンに割り当てられるで。ログには認証情報はマスクして出るで。
 
-### 2. Bot Settings (config.json)
+### 2. ボット設定（config.json）
 
-`sleep_seconds` controls how many seconds the bot waits between cycles in run mode. The value is clamped between 60 and 86400 seconds. The default is 3600 (one hour). If `config.json` is missing it is created automatically.
+`sleep_seconds` は run モードでのサイクル間の待機秒数を指定するんや。値は 60〜86400 秒の間にクランプされるで。デフォルトは 3600（1時間）やで。`config.json` がなかったら自動で作られるで。
 
 ---
 
-## Running the Bot
+## ボットの起動
 
-Make `run.sh` executable first (Linux / macOS):
+まず Linux / macOS では `run.sh` に実行権限をつけてな：
 
 ```bash
 chmod +x run.sh
 ```
 
-Then choose a mode:
+あとはモードを選んで実行するだけや：
 
 ```bash
-./run.sh create <n>     # generate n wallets, sign in each, and append every key to apikey.txt
-./run.sh run            # run one cycle in foreground
-./run.sh bg             # run in background, logs to lebrel-bot.log
-./run.sh bgprobe        # run probe in background
-./run.sh screen         # run in a detached screen session
-./run.sh stop           # stop the background or screen session
-./run.sh probe          # check the host and every proxy without writing anything
-./run.sh selftest       # offline checks, no network
+./run.sh create <n>     # n 個のウォレットを生成して、それぞれサインインして、全キーを apikey.txt に追記するで
+./run.sh run            # フォアグラウンドで1サイクル実行するで
+./run.sh bg             # バックグラウンドで実行、ログは lebrel-bot.log に出るで
+./run.sh bgprobe        # バックグラウンドで probe を実行するで
+./run.sh screen         # デタッチした screen セッションで実行するで
+./run.sh stop           # バックグラウンドや screen セッションを止めるで
+./run.sh probe          # 何も書き込まずにホストと全プロキシを確認するで
+./run.sh selftest       # ネットワークなしのオフラインチェックやで
 ```
 
-For background mode, tail the log anytime:
+バックグラウンドモードのログは好きなときに確認できるで：
 
 ```bash
 tail -f lebrel-bot.log
 ```
 
-For screen mode, attach anytime:
+screen モードはいつでもアタッチできるで：
 
 ```bash
 screen -r lebrel-bot
 ```
 
-Press `Ctrl+C` once to stop the bot cleanly when running in foreground.
+フォアグラウンドで動いてるときは `Ctrl+C` 1回できれいに止まるで。
 
-### Manual run
+### 手動実行
 
 ```bash
 # Linux / macOS
@@ -139,114 +139,114 @@ Press `Ctrl+C` once to stop the bot cleanly when running in foreground.
 
 ---
 
-## Run Modes
+## 実行モード
 
-| Mode | Command | Description |
+| モード | コマンド | 説明 |
 |---|---|---|
-| create | `./run.sh create <n>` | Generate n wallets, sign in each, append every key to apikey.txt |
-| run | `./run.sh run` | Run one cycle with the keys already in apikey.txt |
-| bg | `./run.sh bg` | Same as run but in background with log file |
-| bgprobe | `./run.sh bgprobe` | Probe in background |
-| screen | `./run.sh screen` | Same as run in a detached screen session |
-| probe | `./run.sh probe` | Check the host and every proxy without writing anything |
-| selftest | `./run.sh selftest` | Offline checks, no network |
-| stop | `./run.sh stop` | Stop background or screen session |
+| create | `./run.sh create <n>` | n 個のウォレットを生成して、それぞれサインインして、全キーを apikey.txt に追記するで |
+| run | `./run.sh run` | apikey.txt にあるキーで1サイクル実行するで |
+| bg | `./run.sh bg` | run と同じやけどバックグラウンドでログファイル付きで動くで |
+| bgprobe | `./run.sh bgprobe` | バックグラウンドで probe するで |
+| screen | `./run.sh screen` | デタッチした screen セッションで run するで |
+| probe | `./run.sh probe` | 何も書き込まずにホストと全プロキシを確認するで |
+| selftest | `./run.sh selftest` | ネットワークなしのオフラインチェックやで |
+| stop | `./run.sh stop` | バックグラウンドや screen セッションを止めるで |
 
 ---
 
-## Features
+## 機能
 
-### Solana Wallet Sign-In
-The bot generates a fresh Ed25519 Solana keypair for every account. No existing wallet, seed phrase, or account is needed. The public key is used as the account address in the sign-in flow.
+### Solana ウォレットサインイン
+アカウントごとに新しい Ed25519 Solana キーペアを生成するで。既存のウォレットもシードフレーズもアカウントも要らへん。公開鍵がサインインフローのアカウントアドレスとして使われるんや。
 
-### Wallet Signature Challenge
-The site issues a nonce and a sign-in message. The bot signs the message locally with the generated private key and submits the signature to verify ownership. The session cookie returned by the server is used for all subsequent requests.
+### ウォレット署名チャレンジ
+サイトがノンスとサインインメッセージを発行するで。ボットは生成した秘密鍵でローカルにメッセージへ署名して、署名を送信して所有権を証明するんや。サーバーが返すセッションクッキーはその後の全リクエストで使うで。
 
-### API Key Creation
-After sign-in the bot creates an API key named `lebrel-bot-key` under the session and appends the full key secret to `apikey.txt`. The key prefix is logged in masked form. The wallet address, private key, account id, and key details are saved to `session.json` for reference.
+### API キー作成
+サインイン後、ボットはセッション下で `lebrel-bot-key` という名前の API キーを作って、フルキーシークレットを `apikey.txt` に追記するで。キープレフィックスはマスクしてログに出るで。ウォレットアドレス、秘密鍵、アカウント ID、キーの詳細は参照用に `session.json` に保存されるで。
 
-### Batch Enroll
-Running `create <n>` generates exactly n wallets and signs each one into a fresh account, writing every key to `apikey.txt` as it completes. Each account uses its own proxy slot from `proxy.txt`.
+### バッチ登録
+`create <n>` を実行すると n 個のウォレットを生成して、それぞれ新しいアカウントにサインインして、完了するたびに全キーを `apikey.txt` に書き込むで。各アカウントは `proxy.txt` から自分のプロキシスロットを使うで。
 
-### Probe Mode
-Probe checks the Lebrel AI host and reports the exit country of every proxy in `proxy.txt` without signing up or modifying any files.
+### Probe モード
+probe はサインアップやファイル変更なしで、Lebrel AI ホストを確認して `proxy.txt` の全プロキシの出口国をレポートするで。
 
-### Proxy Support
-Proxies are loaded from `proxy.txt` and assigned to accounts by position in round-robin order. Running without proxies is fully supported.
+### プロキシ対応
+プロキシは `proxy.txt` から読み込まれて、位置順でアカウントにラウンドロビン割り当てされるで。プロキシなしでも全然動くで。
 
 ---
 
-## File Structure
+## ファイル構成
 
 ```text
 Lebrel-Deepseek/
 ├── .github/
 │   └── workflows/
-│       └── build.yml                    # CI: 3-platform matrix build and test
+│       └── build.yml                    # CI: 3プラットフォームのマトリックスビルドとテスト
 ├── assets/
-│   ├── icon.ico                         # Windows binary icon
-│   └── icon.png                         # App icon
+│   ├── icon.ico                         # Windows バイナリアイコン
+│   └── icon.png                         # アプリアイコン
 ├── src/
 │   ├── cli/
-│   │   ├── create.rs                    # Create mode: batch wallet signup (distributed separately)
-│   │   ├── mod.rs                       # CLI mode dispatch
-│   │   ├── probe.rs                     # Probe mode: host and proxy check
-│   │   └── selftest.rs                  # Offline self-test checks
+│   │   ├── create.rs                    # create モード：バッチウォレットサインアップ（別途配布）
+│   │   ├── mod.rs                       # CLI モードディスパッチ
+│   │   ├── probe.rs                     # probe モード：ホストとプロキシチェック
+│   │   └── selftest.rs                  # オフラインセルフテストチェック
 │   ├── job/
 │   │   ├── mod.rs
-│   │   ├── onboard.rs                   # Per-account wallet sign-in and key creation
-│   │   └── run_loop.rs                  # Cycle runner
+│   │   ├── onboard.rs                   # アカウントごとのウォレットサインインとキー作成
+│   │   └── run_loop.rs                  # サイクルランナー
 │   ├── net/
-│   │   ├── client.rs                    # HTTP client and cookie jar
-│   │   ├── egress.rs                    # Proxy loader and exit country check
+│   │   ├── client.rs                    # HTTP クライアントとクッキージャー
+│   │   ├── egress.rs                    # プロキシローダーと出口国チェック
 │   │   └── mod.rs
 │   ├── step/
-│   │   ├── apikey.rs                    # API key creation request
+│   │   ├── apikey.rs                    # API キー作成リクエスト
 │   │   ├── mod.rs
-│   │   ├── signin.rs                    # Challenge fetch and signature verify (distributed separately)
-│   │   └── wallet.rs                    # Solana keypair generation and Ed25519 signing (distributed separately)
+│   │   ├── signin.rs                    # チャレンジ取得と署名検証（別途配布）
+│   │   └── wallet.rs                    # Solana キーペア生成と Ed25519 署名（別途配布）
 │   ├── support/
-│   │   ├── banner.rs                    # ASCII banner and terminal title
+│   │   ├── banner.rs                    # ASCII バナーとターミナルタイトル
 │   │   ├── cfg/
-│   │   │   ├── loader.rs                # Config and proxy loader
+│   │   │   ├── loader.rs                # 設定とプロキシローダー
 │   │   │   ├── mod.rs
-│   │   │   └── schema.rs                # Config schema and sleep setting
+│   │   │   └── schema.rs                # 設定スキーマとスリープ設定
 │   │   ├── consts/
-│   │   │   ├── app.rs                   # File name constants and key name
+│   │   │   ├── app.rs                   # ファイル名定数とキー名
 │   │   │   ├── mod.rs
-│   │   │   └── net.rs                   # Base URLs and API path constants (distributed separately)
-│   │   ├── device.rs                    # Browser device profile builder
-│   │   ├── error.rs                     # Error types and result alias
+│   │   │   └── net.rs                   # ベース URL と API パス定数（別途配布）
+│   │   ├── device.rs                    # ブラウザデバイスプロファイルビルダー
+│   │   ├── error.rs                     # エラータイプと結果エイリアス
 │   │   ├── log/
-│   │   │   ├── format.rs                # Colored log helpers and countdown
-│   │   │   ├── init.rs                  # Signal handler setup
+│   │   │   ├── format.rs                # 色付きログヘルパーとカウントダウン
+│   │   │   ├── init.rs                  # シグナルハンドラセットアップ
 │   │   │   └── mod.rs
 │   │   └── mod.rs
 │   ├── wire/
-│   │   ├── endpoint.rs                  # API endpoint path constants
+│   │   ├── endpoint.rs                  # API エンドポイントパス定数
 │   │   ├── mod.rs
-│   │   └── shape.rs                     # JSON response parsers
-│   └── main.rs                          # Entry point, Ctrl+C handler, mode dispatch
+│   │   └── shape.rs                     # JSON レスポンスパーサー
+│   └── main.rs                          # エントリーポイント、Ctrl+C ハンドラ、モードディスパッチ
 ├── .gitignore
-├── build.rs                             # Build script: embeds icon into Windows binary
+├── build.rs                             # ビルドスクリプト：Windows バイナリにアイコンを埋め込む
 ├── Cargo.lock
-├── Cargo.toml                           # Project manifest and dependencies
-├── config.json                          # Sleep duration setting
-├── HOWTO.txt                            # Quick start guide
+├── Cargo.toml                           # プロジェクトマニフェストと依存関係
+├── config.json                          # スリープ時間設定
+├── HOWTO.txt                            # クイックスタートガイド
 ├── LICENSE                              # GNU AGPL v3.0
-├── Makefile                             # make targets: build, release, run, start, clean, size
-├── proxy.txt                            # Proxy list (optional)
-├── README.md                            # This file
-├── run.sh                               # Run helper: create, run, bg, bgprobe, screen, probe, selftest, stop
-├── apikey.txt                           # Collected API keys, one per line (auto-generated)
-└── session.json                         # Wallet address, key, and account details (auto-generated)
+├── Makefile                             # make ターゲット：build、release、run、start、clean、size
+├── proxy.txt                            # プロキシリスト（任意）
+├── README.md                            # このファイルや
+├── run.sh                               # 実行ヘルパー：create、run、bg、bgprobe、screen、probe、selftest、stop
+├── apikey.txt                           # 収集した API キー、1行1キー（自動生成）
+└── session.json                         # ウォレットアドレス、キー、アカウント詳細（自動生成）
 ```
 
 ---
 
-## Disclaimer
+## 免責事項
 
-This tool is built for educational and technical exploration purposes. Use it wisely and at your own responsibility.
+このツールは教育目的と技術探求のために作ったもんやで。賢く使って、自己責任でよろしくな。
 
 ---
 
